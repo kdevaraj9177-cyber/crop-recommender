@@ -1,0 +1,1 @@
+web: gunicorn crop_recommender_system.wsgi
