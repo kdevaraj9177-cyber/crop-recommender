@@ -11,3 +11,4 @@ xlwt
 seaborn
 cryptography
 setuptools
+whitenoise
