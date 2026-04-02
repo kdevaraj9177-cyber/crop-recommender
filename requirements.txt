@@ -1,8 +1,8 @@
-Django==3.2
-gunicorn==20.1.0
+Django>=4.2
+gunicorn
 numpy
 pandas
-scikit-learn
+scikit-learn>=1.4
 pillow
 psycopg2-binary
 pymysql
@@ -10,4 +10,4 @@ openpyxl
 xlwt
 seaborn
 cryptography
-setuptools>=68
+setuptools
