@@ -10,4 +10,4 @@ openpyxl
 xlwt
 seaborn
 cryptography
-setuptools
+setuptools>=68
