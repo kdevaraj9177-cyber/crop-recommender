@@ -8,7 +8,9 @@ from django.db.models import Q
 import datetime
 import xlwt
 from django.http import HttpResponse
-from django.db.models import Cast, FloatField
+from django.db.models import FloatField
+from django.db.models.functions import Cast
+# from django.db.models import Cast, FloatField
 
 
 # import pandas as pd
