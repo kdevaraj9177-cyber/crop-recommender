@@ -25,7 +25,7 @@ from django.db.models import Cast, FloatField
 # from sklearn.metrics import accuracy_score
 # from sklearn.metrics import f1_score
 
-Create your views here.
+# Create your views here.
 from Remote_User.models import ClientRegister_Model,crop_prediction,detection_ratio,detection_accuracy,crop_recommendation
 
 
