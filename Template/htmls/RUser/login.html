@@ -1,6 +1,10 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+{% extends 'SProvider/design1.html' %}
 {% load static %}
-<!DOCTYPE html>
+
+{% block researchblock %}
+<!-- <!DOCTYPE html>
 
 <html lang="en">
 
@@ -9,7 +13,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<head>
+	<head> -->
 
 <link rel="icon" href="images/icon.png" type="image/x-icon" />
 
@@ -23,7 +27,8 @@
 			body {margin: 0;
                   padding: 0;
                   height: 100vh;
-                background: url("{% static 'bg.jpg' %}")no-repeat center center;
+                  background: url("{% static 'images/bg.jpg' %}") no-repeat center;
+                /* background: url("{% static 'bg.jpg' %}")no-repeat center center; */
                 background-size: cover;
 }
 			}
@@ -125,3 +130,4 @@
 
 
 </html>
+{% endblock %}
