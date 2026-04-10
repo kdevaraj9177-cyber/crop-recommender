@@ -70,14 +70,22 @@ WSGI_APPLICATION = 'crop_recommender_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'crop_db',
+#         'USER': 'django_user',
+#         'PASSWORD': 'django@123',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crop_db',
-        'USER': 'django_user',
-        'PASSWORD': 'django@123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
