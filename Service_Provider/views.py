@@ -31,15 +31,26 @@ from django.db.models.functions import Cast
 from Remote_User.models import ClientRegister_Model,crop_prediction,detection_ratio,detection_accuracy,crop_recommendation
 
 
+# def serviceproviderlogin(request):
+#     if request.method  == "POST":
+#         admin = request.POST.get('username')
+#         password = request.POST.get('password')
+#         if admin == "Admin" and password =="Admin":
+#             return redirect('View_Remote_Users')
+
+#     return render(request,'SProvider/serviceproviderlogin.html')
+
+
 def serviceproviderlogin(request):
-    if request.method  == "POST":
+    if request.method == "POST":
         admin = request.POST.get('username')
         password = request.POST.get('password')
-        if admin == "Admin" and password =="Admin":
+
+        if admin == "Admin" and password == "Admin":
+            request.session['service_provider'] = admin   # ✅ ADD THIS
             return redirect('View_Remote_Users')
 
-    return render(request,'SProvider/serviceproviderlogin.html')
-
+    return render(request, 'SProvider/serviceproviderlogin.html')
 
 def login(request):
 
