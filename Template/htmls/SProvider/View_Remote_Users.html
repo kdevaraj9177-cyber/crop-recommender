@@ -1,7 +1,9 @@
 {% extends 'SProvider/design1.html' %}
 {% block researchblock %}
+{% load static %}
 
-<link rel="icon" href="images/icon.png" type="image/x-icon" />
+<!-- <link rel="icon" href="images/icon.png" type="image/x-icon" /> --> -->
+<link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -10,7 +12,7 @@
 
 
 		<style>
-			body {background-color:#000000;}
+			/* body {background-color:#000000;}
 			.container-fluid {padding:50px;}
 			.container{background-color:white;padding:50px;   }
 			#title{font-family: 'Fredoka One', cursive;
@@ -24,7 +26,13 @@
 			font-size:15px;
 			}
 
-		.style1 {color: #FF0000}
+		.style1 {color: #FF0000} */
+		
+body {
+    background-image: url("{% static 'images/bg.jpg' %}");
+    background-size: cover;
+}
+
         </style>
 
 	<body>
