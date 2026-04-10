@@ -8,23 +8,24 @@ from django.db.models import Q
 import datetime
 import xlwt
 from django.http import HttpResponse
+from django.db.models import Cast, FloatField
 
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import re
-from sklearn.ensemble import VotingClassifier
-import warnings
-warnings.filterwarnings("ignore")
-plt.style.use('ggplot')
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import f1_score
+# import pandas as pd
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# import re
+# from sklearn.ensemble import VotingClassifier
+# import warnings
+# warnings.filterwarnings("ignore")
+# plt.style.use('ggplot')
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+# from sklearn.metrics import accuracy_score
+# from sklearn.metrics import f1_score
 
-# Create your views here.
+Create your views here.
 from Remote_User.models import ClientRegister_Model,crop_prediction,detection_ratio,detection_accuracy,crop_recommendation
 
 
@@ -103,7 +104,7 @@ def negativechart(request,chart_type):
     return render(request,'SProvider/negativechart.html',{'object':topic,'dd':dd,'chart_type':chart_type})
 
 def charts(request,chart_type):
-    chart1 = crop_prediction.objects.values('names').annotate(dcount=Avg('Yield_Prediction'))
+    chart1 = crop_prediction.objects.values('names').annotate(dcount=Avg(Cast('Yield_Prediction', FloatField())))
     return render(request,"SProvider/charts.html", {'form':chart1, 'chart_type':chart_type})
 
 def charts1(request,chart_type):
@@ -149,119 +150,10 @@ def Download_Trained_DataSets(request):
 
 def Train_Test_DataSets(request):
 
-    detection_accuracy.objects.all().delete()
+     return HttpResponse("Training disabled to prevent server crash")
 
-    df = pd.read_csv('crop_production.csv')
-
-    df
-    df.columns
-    df.rename(columns={'production': 'production', 'State_Name': 'sname'}, inplace=True)
-
-    sum_maxp = df["production"].count()
-
-    df["ratio_of_production"] = df["production"].map(lambda x: (x / int(sum_maxp)))
-
-    def apply_results(prod):
-        if (float(prod) <= 1):
-            return 1  # Not Recommended
-        elif (float(prod) >= 1):
-            return 2  # Recommended
-
-    df['label'] = df['ratio_of_production'].apply(apply_results)
-    #df.drop(['percent_of_production'], axis=1, inplace=True)
-    results = df['label'].value_counts()
-
-    cv = CountVectorizer()
-    X = df['sname']
-    y = df['label']
-
-    X = cv.fit_transform(X)
-
-    print(y)
-
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
-    X_train.shape, X_test.shape, y_train.shape
-
-    print("Naive Bayes")
-
-    from sklearn.naive_bayes import MultinomialNB
-    NB = MultinomialNB()
-    NB.fit(X_train, y_train)
-    predict_nb = NB.predict(X_test)
-
-    naivebayes = accuracy_score(y_test, predict_nb) * 100
-    print(naivebayes)
-    print(confusion_matrix(y_test, predict_nb))
-    print(classification_report(y_test, predict_nb))
-    detection_accuracy.objects.create(names="Naive Bayes", ratio=naivebayes)
-
-    # SVM Model
-    print("SVM")
-    from sklearn import svm
-    lin_clf = svm.LinearSVC()
-    lin_clf.fit(X_train, y_train)
-    predict_svm = lin_clf.predict(X_test)
-    svm_acc = accuracy_score(y_test, predict_svm) * 100
-    print(svm_acc)
-    print("CLASSIFICATION REPORT")
-    print(classification_report(y_test, predict_svm))
-    print("CONFUSION MATRIX")
-    print(confusion_matrix(y_test, predict_svm))
-
-    detection_accuracy.objects.create(names="SVM", ratio=svm_acc)
-
-    print("Decision Tree Classifier")
-    from sklearn.tree import DecisionTreeClassifier
-
-    DT = DecisionTreeClassifier()
-    DT.fit(X_train, y_train)
-    pred_dt = DT.predict(X_test)
-    DT.score(X_test, y_test)
-    print("ACCURACY")
-    print(accuracy_score(y_test, pred_dt) * 100)
-    print("CLASSIFICATION REPORT")
-    print(classification_report(y_test, pred_dt))
-    print("CONFUSION MATRIX")
-    print(confusion_matrix(y_test, pred_dt))
-    detection_accuracy.objects.create(names="Decision Tree Classifier", ratio=accuracy_score(y_test, pred_dt) * 100)
-
-    print("K Neighbors Classifier")
-    from sklearn.neighbors import KNeighborsClassifier
-    kn = KNeighborsClassifier()
-    kn.fit(X_train, y_train)
-    knpredict = kn.predict(X_test)
-    print("ACCURACY")
-    print(accuracy_score(y_test, knpredict) * 100)
-    print("CLASSIFICATION REPORT")
-    print(classification_report(y_test, knpredict))
-    print("CONFUSION MATRIX")
-    print(confusion_matrix(y_test, knpredict))
-
-    detection_accuracy.objects.create(names="KNeighborsClassifier", ratio=accuracy_score(y_test, knpredict) * 100)
-
-    print("Random Forest Classifier")
-    from sklearn.ensemble import RandomForestClassifier
-    rf_clf = RandomForestClassifier()
-    rf_clf.fit(X_train, y_train)
-    rfpredict = rf_clf.predict(X_test)
-    print("ACCURACY")
-    print(accuracy_score(y_test, rfpredict) * 100)
-    print("CLASSIFICATION REPORT")
-    print(classification_report(y_test, rfpredict))
-    print("CONFUSION MATRIX")
-    print(confusion_matrix(y_test, rfpredict))
-
-    detection_accuracy.objects.create(names="Random Forest Classifier", ratio=accuracy_score(y_test, rfpredict) * 100)
-
-    Labeled_Data = 'Labeled_Data.csv'
-    df.to_csv(Labeled_Data, index=False)
-    df.to_markdown
-
-    obj = detection_accuracy.objects.all()
-
-    return render(request,'SProvider/Train_Test_DataSets.html', {'objs': obj})
-
+    
+   
 
 
 
