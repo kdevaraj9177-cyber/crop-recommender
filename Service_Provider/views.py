@@ -75,9 +75,14 @@ def View_All_Crop_Recommendations(request):
     obj = crop_recommendation.objects.all()
     return render(request, 'SProvider/View_All_Crop_Recommendations.html', {'objs': obj})
 
+# def View_Remote_Users(request):
+#     obj=ClientRegister_Model.objects.all()
+#     return render(request,'SProvider/View_Remote_Users.html',{'objects':obj})
+
+from django.http import HttpResponse
+
 def View_Remote_Users(request):
-    obj=ClientRegister_Model.objects.all()
-    return render(request,'SProvider/View_Remote_Users.html',{'objects':obj})
+    return HttpResponse("Working fine")
 
 def ViewTrendings(request):
     topic = crop_prediction.objects.values('topics').annotate(dcount=Count('topics')).order_by('-dcount')
@@ -149,11 +154,7 @@ def Download_Trained_DataSets(request):
     return response
 
 def Train_Test_DataSets(request):
-
-     return HttpResponse("Training disabled to prevent server crash")
-
-    
-   
+    return render(request, 'SProvider/Train_Test_DataSets.html', {'objs': []})
 
 
 
