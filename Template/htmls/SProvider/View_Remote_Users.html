@@ -38,13 +38,13 @@
 						<fieldset>
 							<p class="text-uppercase pull-center style1">VIEW ALL REMOTE USERS !!! </p>
                             <div class="viewclients">
-							  <table>
-								<tr>
+							  <!-- <table> -->
+								<!-- <tr>
 									<th bgcolor="#FF0000" style="color:yellow">USER NAME</th>
 									<th bgcolor="#FF0000" style="color:yellow">EMAIL</th>
 									<th bgcolor="#FF0000" style="color:yellow">Mob No</th>
-									<th bgcolor="#FF0000" style="color:yellow">Country</th>
-									<th bgcolor="#FF0000" style="color:yellow">State</th>
+									<th bgcolor="#FF0000" style="color:yellow">Country</th> -->
+									<!-- <th bgcolor="#FF0000" style="color:yellow">State</th>
 									<th bgcolor="#FF0000" style="color:yellow">City</th>
 								</tr>
 								<tr>
@@ -56,8 +56,28 @@
 									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.state}}</span></td>
 									<td bgcolor="#FFFFFF" style="color:white"><span class="style1">{{o.city}}</span></td>
 								</tr>
-								{% endfor %}
-							</table>
+								{% endfor %} -->
+								<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Mobile</th>
+    </tr>
+
+    {% for i in objects %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.username }}</td>
+        <td>{{ i.password }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.mobile }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+							<!-- </table> -->
 
 						</div>
 					  </fieldset>
