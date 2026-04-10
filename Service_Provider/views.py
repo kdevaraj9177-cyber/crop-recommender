@@ -84,10 +84,11 @@ def View_All_Crop_Recommendations(request):
 def View_Remote_Users(request):
     obj = ClientRegister_Model.objects.all()
     return render(request, 'SProvider/View_Remote_Users.html', {'objects': obj})
-from django.http import HttpResponse
 
-def View_Remote_Users(request):
-    return HttpResponse("Working fine")
+# from django.http import HttpResponse
+
+# def View_Remote_Users(request):
+#     return HttpResponse("Working fine")
 
 def ViewTrendings(request):
     topic = crop_prediction.objects.values('topics').annotate(dcount=Count('topics')).order_by('-dcount')
