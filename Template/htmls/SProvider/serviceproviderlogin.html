@@ -1,92 +1,127 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 {% load static %}
-<!DOCTYPE html>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+<!DOCTYPE html>
 <html lang="en">
 
-	<title>Login</title>
+<head>
+    <title>Login</title>
 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<head>
+    <!-- Correct favicon -->
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/x-icon" />
 
-<link rel="icon" href="images/icon.png" type="image/x-icon" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
 
-	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            background-color: #eee;
+        }
 
+        .container-fluid {
+            padding: 50px;
+        }
 
+        .container {
+            background-color: white;
+            padding: 50px;
+        }
 
-		<style>
-			body {background: url("{% static 'bg.jpg' %}");
-			background-color:#eee;}
-			.container-fluid {padding:50px;}
-			.container{background-color:white;padding:50px;   }
-			#title{font-family: 'Fredoka One', cursive;
-}
-			.text-uppercase{
-			font-family: 'Righteous', cursive;
+        #title {
+            font-family: 'Fredoka One', cursive;
+        }
 
-			}
-		.style1 {
-	color: #FF0000;
-	font-weight: bold;
-}
+        .text-uppercase {
+            font-family: 'Righteous', cursive;
+        }
+
+        .style1 {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
         .style2 {
-	font-family: 'Righteous', cursive;
-	color: #FF0000;
-	font-weight: bold;
-}
-        </style>
-	</head>
-	<body>
-	<div class="container-fluid">
-		<div>
-			<h2 class="text-center style1" id="title">Crop Recommender System Using Machine Learning Approach</h2>
-			 <p class="text-center">
-				<span class="style1"><small id="passwordHelpInline" class="text-muted">Crop Yield Prediction, Machine Learning, RandomForest, Crop Recommender System, Artificial Neural Networks(ANN), Support Vector Machine (SVM), K-Nearest Neighbours(KNN), Multivariate Linear Regression (MLR), Fertilizer
+            font-family: 'Righteous', cursive;
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
+<body>
 
-</small></span> </p>
- 			<hr>
-			<div class="row">
+<div class="container-fluid">
+    <div>
+        <h2 class="text-center style1" id="title">
+            Crop Recommender System Using Machine Learning Approach
+        </h2>
 
+        <p class="text-center">
+            <span class="style1">
+                <small class="text-muted">
+                    Crop Yield Prediction, Machine Learning, RandomForest,
+                    Crop Recommender System, Artificial Neural Networks(ANN),
+                    Support Vector Machine (SVM), K-Nearest Neighbours(KNN),
+                    Multivariate Linear Regression (MLR), Fertilizer
+                </small>
+            </span>
+        </p>
 
-				<div class="col-md-2">
-					<!-------null------>
-				</div>
+        <hr>
 
-				<div class="col-md-5">
- 				 		<form method="POST" action="{% url 'serviceproviderlogin' %}" role="form">
+        <div class="row">
 
-							{% csrf_token %}
+            <div class="col-md-2"></div>
 
-						<fieldset>
-                             {% load static %}
-						<img src="{% static '/login.jpg' %}" alt="My image">
-							<p class="style2"> Login Service Provider: </p>
+            <div class="col-md-5">
 
-							<div class="form-group">
-								<input type="text" name="username"   placeholder="User Name" required>
-							</div>
-							<div class="form-group">
-								<input type="password" name="password"   placeholder="Password" required>
-							</div>
-							<div>
-								<input type="submit" name="submit1"  class="btn btn-md" value="Login">
-							</div>
- 						</fieldset>
-						<br><br>
-						<button class="btn btn-lg "><a href="{% url 'login' %}">User Login</a></button> 
-				</form>
-				</div>
-			</div>
-		</div>
+                <form method="POST" action="{% url 'serviceproviderlogin' %}">
+                    {% csrf_token %}
 
-	</div>
-	</body>
+                    <!-- Correct Image -->
+                    <img src="{% static 'images/Login.jpg' %}" alt="My image" width="250">
 
+                    <p class="style2">Login Service Provider:</p>
 
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control"
+                               placeholder="User Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control"
+                               placeholder="Password" required>
+                    </div>
+
+                    <div>
+                        <input type="submit" name="submit1"
+                               class="btn btn-primary" value="Login">
+                    </div>
+
+                    <br>
+
+                    <a href="{% url 'login' %}" class="btn btn-secondary">
+                        User Login
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
